@@ -1,5 +1,6 @@
 import React from 'react'
 import auth from './auth';
+import { register } from './serviceWorker';
 
 
 export const AppLayout = (props)=>{
@@ -10,6 +11,7 @@ export const AppLayout = (props)=>{
             <button onClick={()=>{auth.logout(()=>{
                 props.history.push("/");
             })}}>Logout</button>
+            
         </div>
     )
 }

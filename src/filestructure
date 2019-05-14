@@ -1,0 +1,21 @@
+import React, {Component} from "react";
+
+class abc extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
+
+
+    render() {
+        return (
+            <div>
+                <p>Civil Law </p>
+            </div>
+        );
+    }
+}
+
+export default abc;

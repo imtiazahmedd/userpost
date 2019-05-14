@@ -5,7 +5,9 @@ import {LandingPage} from './landingpage'
 import {AppLayout} from './app.layout'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {ProtectedRoutes} from './protected.route'
+import Register from './Auth/register'
     
+
 function App(){
     return(
         <div className="App">
@@ -15,6 +17,7 @@ function App(){
             exact
             path="/app"
             component={AppLayout}/>
+            <Route path="/register" component={Register}/>
             <Route path="*" component={()=> "404 Not Found"}/>
             </Switch>
         </div>
