@@ -2,6 +2,7 @@ import auth from './auth'
 import React, {Component} from "react";
 import {Link} from 'react-router-dom'
 import { Button, ButtonToolbar, Grid, Row, Col,Carousel} from 'react-bootstrap';
+import { validate } from '@babel/types';
 
 export class LandingPage extends Component {
     constructor(props) {
@@ -18,17 +19,41 @@ export class LandingPage extends Component {
         this.setState({[event.target.name] : event.target.value})
     }
 
+
+    validate(){
+        const {email, password} = this.state;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+         if(!re.test(email.toLowerCase())){
+            alert('Enter valid email');
+            return false;
+        }
+        return true;
+    }
+
+    Login(){
+        if(this.validate()){
+            const {email, password} = this.state;
+
+                // postRecord(token,'url',formData) .then((res)=>{
+            //     if(res.code == 200 || res.code == 201){
+                   
+            //     }
+               
+            // }).catch((res)=>{
+            //     if (res.code == 400) {
+            //         console.log(res,'error')
+            //     }
+            // })
+
+            auth.login(()=>{
+                this.props.history.push("./app")
+                })
+        }
+    }   
     render() {
         return (
             <div>
-            {/* <h1>Landing page</h1>
-            <button onClick={()=>{
-                auth.login(()=>{
-                    this.props.history.push("./app")
-                })
-            }}>Login</button> */}
-
-
         <form class="form-horizontal">
            <h1>Login Here</h1>
                             <div class="form-group">
@@ -52,9 +77,7 @@ export class LandingPage extends Component {
                             </div>
 
                             <div class="form-group ">
-                                <button onClick={()=>{auth.login(()=>{
-                                 this.props.history.push("./app")
-                                 })}} type="button" class="btn btn-primary">Login</button>
+                                <button onClick={()=>{this.Login()}} type="button" class="btn btn-primary">Login</button>
                             </div>
                             <Link to="/register">Registration</Link>
                         </form>
