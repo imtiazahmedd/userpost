@@ -6,7 +6,7 @@ export const ProtectedRoutes = ({component : Component, ...rest}) => {
     return( 
         <Route {...rest} render={
             (props) => {
-                if(auth.isAuthenticated()){
+                if(!null){
                     return <Component {...props}/>                                        
                 }else{
                     return(
